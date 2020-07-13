@@ -5,7 +5,7 @@ import axios from 'axios'
 
 // 创建axios实例
 const service = axios.create({
-  baseURL: 'http://192.168.96.160:8085', // api的base_url
+  baseURL: 'http://192.168.96.160:4000', // api的base_url
   timeout: 3000, // 请求超时时间
   // withCredentials: true // 跨域请求，允许保存cookie
 })

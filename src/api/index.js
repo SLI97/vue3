@@ -2,15 +2,15 @@ import request from '@/utils/index'
 
 export function getUser(params) {
   return request({
-    url: '/sli97/user/get',
-    method: 'delete',
+    url: '/uaa/user/get',
+    method: 'post',
     data: params,
   })
 }
 
 export function createUser(params) {
   return request({
-    url: '/sli97/user/insert',
+    url: '/user/insert',
     method: 'post',
     data: params,
   })
@@ -18,7 +18,7 @@ export function createUser(params) {
 
 export function login(params) {
   return request({
-    url: '/sli97/auth/login',
+    url: '/uaa/auth/login',
     method: 'post',
     headers: {
       'Authorization': 'Basic YnJvd3Nlcjpicm93c2Vy',
