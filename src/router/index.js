@@ -17,10 +17,13 @@ const routes = [
         component: () => import('@/components/HelloWorld'),
     },
     {
+        path: '/reload',
+        component: () => import('@/components/reload'),
+    },
+    {
         path: '/',
         component: () => import('@/components/login'),
         redirect: '/login',
-
     }
 ]
 

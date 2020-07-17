@@ -3,7 +3,7 @@ import request from '@/utils/index'
 export function getUser(params) {
   return request({
     url: '/uaa/user/get',
-    method: 'post',
+    method: 'get',
     data: params,
   })
 }
@@ -25,5 +25,18 @@ export function login(params) {
       // 'Content-type': 'application/x-www-form-urlencoded; charset=utf-8',
     },
     params: params,
+  })
+}
+
+export function SetCok(params) {
+  console.log("我执行了")
+  return request({
+    url: '/uaa/user/zzz',
+    method: 'get',
+    // headers: {
+    //   'Authorization': 'Basic YnJvd3Nlcjpicm93c2Vy',
+    //   // 'Content-type': 'application/x-www-form-urlencoded; charset=utf-8',
+    // },
+    // params: params,
   })
 }
