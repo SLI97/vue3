@@ -4,6 +4,7 @@ module.exports = {
     publicPath: '/',//如果打包后的应用部署在服务器的根目录下，就/就可以了，否则入/app/下，就改成/app/
     lintOnSave: false,
     devServer: {
+        disableHostCheck:true,
         port: 8084,
         host: '0.0.0.0',
         https: false,
@@ -20,7 +21,7 @@ module.exports = {
     chainWebpack: (config) => {
         config.resolve.alias
             .set('@', resolve('./src'))
-            .set('components', resolve('./src/components'))
+            .set('components', resolve('./src/views'))
         //set第一个参数：设置的别名，第二个参数：设置的路径
     }
 }

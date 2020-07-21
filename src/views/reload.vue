@@ -1,5 +1,5 @@
 <template>
-  <div>333</div>
+  <div>success!</div>
 </template>
 
 <script>
@@ -20,18 +20,14 @@ export default {
     };
   },
   mounted() {
-    console.log(333);
-    console.log(window.opener);
-    // window.opener.reload()
+    // console.log(window.opener);
+    const token = this.$route.query.access_token
+    if(token){
+      console.log(token)
+       setToken(token);
+    }
     window.opener.location.href = window.opener.location.href
-    SetCok()
-    // setTimeout(()=>{
-    //     window.close()
-    // },1000)
-
-    // window.addEventListener("message", function(e) {
-    //   alert(e.data);
-    // });
+    window.close()
   },
   methods: {}
 };

@@ -10,20 +10,20 @@ const routes = [
     //单个路由均为对象类型，path代表的是路径，component代表组件
     {
         path: '/login',
-        component: () => import('@/components/login'),
+        component: () => import('@/views/login'),
     },
     {
-        path: '/HelloWorld',
-        component: () => import('@/components/HelloWorld'),
+        path: '/home',
+        component: () => import('@/views/home'),
     },
     {
         path: '/reload',
-        component: () => import('@/components/reload'),
+        component: () => import('@/views/reload'),
     },
     {
         path: '/',
-        component: () => import('@/components/login'),
-        redirect: '/login',
+        component: () => import('@/views/home'),
+        redirect: '/home',
     }
 ]
 

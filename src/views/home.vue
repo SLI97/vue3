@@ -40,7 +40,7 @@ import { getUser, createUser } from "@/api/index";
 // import {asd,obj1,obj2} from "@/test/indexa";
 
 export default {
-  name: "HelloWorld",
+  name: "home",
   data() {
     return {
       tableData: [],
@@ -55,7 +55,7 @@ export default {
   },
   mounted() {
     this.getData();
-    console.log(process)
+    // console.log(process)
   },
   methods: {
     getData() {

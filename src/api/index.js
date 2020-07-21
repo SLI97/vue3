@@ -1,4 +1,4 @@
-import request from '@/utils/index'
+import request from '@/utils/request'
 
 export function getUser(params) {
   return request({
