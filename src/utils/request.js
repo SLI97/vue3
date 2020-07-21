@@ -5,9 +5,9 @@ import { getToken } from '@/utils/auth'
 
 // 创建axios实例
 const service = axios.create({
-  baseURL: 'http://sli.com', // api的base_url
+  // baseURL: 'http://sli.com', // api的base_url
   // baseURL: 'http://192.168.96.160:9999', // api的base_url
-  // baseURL: 'http://localhost:9999', // api的base_url
+  baseURL: 'http://localhost:9999', // api的base_url
   timeout: 15000, // 请求超时时间
   withCredentials: true // 跨域请求，允许保存cookie
 })
@@ -16,7 +16,7 @@ const service = axios.create({
 service.interceptors.request.use(
   config => {
     if(getToken()){
-      config.headers['Authorization'] = 'Bearer ' + getToken() 
+      config.headers['Authorization'] = 'Bearer ' + getToken()
     }
     if (!config.headers['Content-type']) { // 指定content-type 则跳过
       config.headers['Content-Type'] = 'application/json; charset=utf-8'
