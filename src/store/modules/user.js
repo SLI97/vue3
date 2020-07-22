@@ -1,5 +1,5 @@
-import { login, logout, getInfo } from '@/api/login'
-import { getToken, setToken, removeToken } from '@/utils/auth'
+import {login, logout, getInfo} from '@/api/login'
+import {getToken, setToken, removeToken} from '@/utils/auth'
 
 const user = {
 	state: {
@@ -30,7 +30,7 @@ const user = {
 
 	actions: {
 		// 登录
-		Login({ commit }, userInfo) {
+		Login({commit}, userInfo) {
 			const username = userInfo.username.trim()
 			const password = userInfo.password
 			const code = userInfo.code
@@ -47,28 +47,103 @@ const user = {
 		},
 
 		// 获取用户信息
-		GetInfo({ commit, state }) {
+		GetInfo({commit, state}) {
 			return new Promise((resolve, reject) => {
-				getInfo(state.token).then(res => {
-					const user = res.user
-					const avatar = user.avatar == "" ? require("@/assets/image/profile.jpg") : process.env.VUE_APP_BASE_API + user.avatar;
-					if (res.roles && res.roles.length > 0) { // 验证返回的roles是否是一个非空数组
-						commit('SET_ROLES', res.roles)
-						commit('SET_PERMISSIONS', res.permissions)
-					} else {
-						commit('SET_ROLES', ['ROLE_DEFAULT'])
+				// getInfo(state.token).then(res => {
+				const res = {
+					"msg": "操作成功",
+					"code": 200,
+					"permissions": ["*:*:*"],
+					"roles": ["admin"],
+					"user": {
+						"searchValue": null,
+						"createBy": "admin",
+						"createTime": "2018-03-16 11:33:00",
+						"updateBy": null,
+						"updateTime": null,
+						"remark": "管理员",
+						"dataScope": null,
+						"params": {},
+						"userId": 1,
+						"deptId": 103,
+						"userName": "admin",
+						"nickName": "若依",
+						"email": "ry@163.com",
+						"phonenumber": "15888888888",
+						"sex": "1",
+						"avatar": "",
+						"password": "$2a$10$7JB720yubVSZvUI0rEqK/.VqGOZTH.ulu33dHOiBE8ByOhJIrdAu2",
+						"salt": null,
+						"status": "0",
+						"delFlag": "0",
+						"loginIp": "127.0.0.1",
+						"loginDate": "2018-03-16T11:33:00.000+0800",
+						"dept": {
+							"searchValue": null,
+							"createBy": null,
+							"createTime": null,
+							"updateBy": null,
+							"updateTime": null,
+							"remark": null,
+							"dataScope": null,
+							"params": {},
+							"deptId": 103,
+							"parentId": 101,
+							"ancestors": null,
+							"deptName": "研发部门",
+							"orderNum": "1",
+							"leader": "若依",
+							"phone": null,
+							"email": null,
+							"status": "0",
+							"delFlag": null,
+							"parentName": null,
+							"children": []
+						},
+						"roles": [{
+							"searchValue": null,
+							"createBy": null,
+							"createTime": null,
+							"updateBy": null,
+							"updateTime": null,
+							"remark": null,
+							"dataScope": "1",
+							"params": {},
+							"roleId": 1,
+							"roleName": "管理员",
+							"roleKey": "admin",
+							"roleSort": "1",
+							"status": "0",
+							"delFlag": null,
+							"flag": false,
+							"menuIds": null,
+							"deptIds": null,
+							"admin": true
+						}],
+						"roleIds": null,
+						"postIds": null,
+						"admin": true
 					}
-					commit('SET_NAME', user.userName)
-					commit('SET_AVATAR', avatar)
-					resolve(res)
-				}).catch(error => {
-					reject(error)
-				})
+				}
+				const user = res.user
+				const avatar = user.avatar == "" ? require("@/assets/image/profile.jpg") : process.env.VUE_APP_BASE_API + user.avatar;
+				if (res.roles && res.roles.length > 0) { // 验证返回的roles是否是一个非空数组
+					commit('SET_ROLES', res.roles)
+					commit('SET_PERMISSIONS', res.permissions)
+				} else {
+					commit('SET_ROLES', ['ROLE_DEFAULT'])
+				}
+				commit('SET_NAME', user.userName)
+				commit('SET_AVATAR', avatar)
+				resolve(res)
+				// }).catch(error => {
+				// 	reject(error)
+				// })
 			})
 		},
 
 		// 退出系统
-		LogOut({ commit, state }) {
+		LogOut({commit, state}) {
 			return new Promise((resolve, reject) => {
 				logout(state.token).then(() => {
 					commit('SET_TOKEN', '')
@@ -83,7 +158,7 @@ const user = {
 		},
 
 		// 前端 登出
-		FedLogOut({ commit }) {
+		FedLogOut({commit}) {
 			return new Promise(resolve => {
 				commit('SET_TOKEN', '')
 				removeToken()

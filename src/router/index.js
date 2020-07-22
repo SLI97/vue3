@@ -2,7 +2,6 @@
 import Vue from 'vue';
 //引入vue-router
 import VueRouter from 'vue-router';
-
 /* Layout */
 import Layout from '@/layout'
 
@@ -27,8 +26,19 @@ Vue.use(VueRouter)
   }
  */
 
-const constantRoutes = [
+export const constantRoutes = [
   //单个路由均为对象类型，path代表的是路径，component代表组件
+	{
+		path: '/redirect',
+		component: Layout,
+		hidden: true,
+		children: [
+			{
+				path: '/redirect/:path(.*)',
+				component: (resolve) => require(['@/views/redirect'], resolve)
+			}
+		]
+	},
   {
     path: '/',
     component: (resolve) => require(['@/views/index'], resolve),
@@ -50,6 +60,16 @@ const constantRoutes = [
     component: (resolve) => require(['@/views/reload'], resolve),
     hidden: true
   },
+	{
+		path: '/404',
+		component: (resolve) => require(['@/views/error/404'], resolve),
+		hidden: true
+	},
+	{
+		path: '/401',
+		component: (resolve) => require(['@/views/error/401'], resolve),
+		hidden: true
+	},
   {
     path: '',
     component: Layout,
@@ -63,6 +83,21 @@ const constantRoutes = [
       }
     ]
   },
+	{
+		path: '/user',
+		component: Layout,
+		hidden: true,
+		// redirect: 'noredirect',
+		redirect: '/user/profile',
+		children: [
+			{
+				path: 'profile',
+				component: (resolve) => require(['@/views/system/user/profile/index'], resolve),
+				name: 'Profile',
+				meta: { title: '个人中心', icon: 'user' }
+			}
+		]
+	},
 ]
 
 //实例化VueRouter并将routes添加进去
